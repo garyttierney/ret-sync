@@ -41,7 +41,6 @@ import ghidra.app.cmd.comments.AppendCommentCmd;
 import ghidra.app.cmd.comments.SetCommentCmd;
 import ghidra.app.cmd.function.SetFunctionRepeatableCommentCmd;
 import ghidra.app.cmd.label.AddLabelCmd;
-import ghidra.app.decompiler.component.DecompilerHighlightService;
 import ghidra.app.events.ProgramActivatedPluginEvent;
 import ghidra.app.events.ProgramClosedPluginEvent;
 import ghidra.app.plugin.PluginCategoryNames;
@@ -77,7 +76,7 @@ import ghidra.program.util.ProgramLocation;
                 ConsoleService.class,
                 CodeViewerService.class,
                 GoToService.class,
-                DecompilerHighlightService.class},
+        },
         eventsConsumed = {
                 ProgramActivatedPluginEvent.class,
                 ProgramClosedPluginEvent.class }
@@ -93,7 +92,6 @@ public class RetSyncPlugin extends ProgramPlugin {
     CodeViewerService cvs;
     ProgramManager pm;
     LocalColorizerService clrs;
-    DecompilerHighlightService dhs;
 
     // client handling
     ListenerBackground server;
@@ -136,7 +134,6 @@ public class RetSyncPlugin extends ProgramPlugin {
         gs = tool.getService(GoToService.class);
         pm = tool.getService(ProgramManager.class);
         cvs = tool.getService(CodeViewerService.class);
-        dhs = tool.getService(DecompilerHighlightService.class);
         clrs = new LocalColorizerService(this);
 
         loadConfiguration();
@@ -411,7 +408,6 @@ public class RetSyncPlugin extends ProgramPlugin {
         if (dest != null) {
             gs.goTo(dest);
             clrs.setPrevAddr(dest);
-            clrs.enhancedDecompHighlight(dest);
         }
     }
 

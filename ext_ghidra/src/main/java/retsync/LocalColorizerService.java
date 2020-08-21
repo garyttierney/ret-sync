@@ -163,28 +163,28 @@ public class LocalColorizerService {
 
     // enhance highlight in decompiler (full line)
     public void enhancedDecompHighlight(Address addr) {
-        ClangLayoutController clc = (ClangLayoutController) rsplugin.dhs.getLayoutModel();
-        ClangTokenGroup root = clc.getRoot();
-        AddressSet locs = new AddressSet(addr);
-        List<ClangToken> tokens = DecompilerUtils.getTokens(root, locs);
-
-        // collect ClangLine
-        HashSet<ClangLine> lines = new HashSet<ClangLine>();
-        tokens.forEach((tok) -> {
-            ClangLine lineParent = tok.getLineParent();
-            lines.add(lineParent);
-        });
-
-        // apply highlight for each collected line
-        lines.forEach((line) -> {
-            ArrayList<ClangToken> ltoks = line.getAllTokens();
-            if (ltoks != null) {
-                ltoks.forEach((token) -> {
-                    if (token != null)
-                        token.setHighlight(SYNC_CURLINE);
-                });
-            }
-        });
+//        ClangLayoutController clc = (ClangLayoutController) rsplugin.dhs.getLayoutModel();
+//        ClangTokenGroup root = clc.getRoot();
+//        AddressSet locs = new AddressSet(addr);
+//        List<ClangToken> tokens = DecompilerUtils.getTokens(root, locs);
+//
+//        // collect ClangLine
+//        HashSet<ClangLine> lines = new HashSet<ClangLine>();
+//        tokens.forEach((tok) -> {
+//            ClangLine lineParent = tok.getLineParent();
+//            lines.add(lineParent);
+//        });
+//
+//        // apply highlight for each collected line
+//        lines.forEach((line) -> {
+//            ArrayList<ClangToken> ltoks = line.getAllTokens();
+//            if (ltoks != null) {
+//                ltoks.forEach((token) -> {
+//                    if (token != null)
+//                        token.setHighlight(SYNC_CURLINE);
+//                });
+//            }
+//        });
     }
 
     /*
